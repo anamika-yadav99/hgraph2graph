@@ -40,6 +40,7 @@ class PairVocab(object):
             
     def __getitem__(self, x):
         assert type(x) is tuple
+        print(self.hmap[x[0]], self.vmap[x])
         return self.hmap[x[0]], self.vmap[x]
 
     def get_smiles(self, idx):
