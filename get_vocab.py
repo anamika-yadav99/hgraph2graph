@@ -21,19 +21,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--ncpu', type=int, default=1)
     args = parser.parse_args()
-    print('agres--------------', args)
 
     data = [mol for line in sys.stdin for mol in line.split()[:2]]
     data = list(set(data))
-    print(data)
 
     batch_size = len(data) // args.ncpu + 1
-    print(batch_size)
     batches = [data[i : i + batch_size] for i in range(0, len(data), batch_size)]
 
     pool = Pool(args.ncpu)
     vocab_list = pool.map(process, batches)
-    print(vocab_list)
     vocab = [(x,y) for vocab in vocab_list for x,y in vocab]
     vocab = list(set(vocab))
 
