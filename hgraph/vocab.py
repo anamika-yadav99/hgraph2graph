@@ -39,6 +39,7 @@ class PairVocab(object):
         self.mask = self.mask - 1000.0
             
     def __getitem__(self, x):
+        print(x)
         assert type(x) is tuple
         print(self.hmap[x[0]], self.vmap[x])
         return self.hmap[x[0]], self.vmap[x]
